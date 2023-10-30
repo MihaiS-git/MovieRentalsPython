@@ -4,6 +4,19 @@ from repository.in_file_repository import InFileRepository
 from service.movie_service import MovieService
 
 
+def read_movie_info():
+    id = input("Enter the movie ID: ")
+    title = input("Enter the title: ")
+    year = input("Enter the year: ")
+    genre = input("Enter the genre(ACTION, COMEDY, DRAMA, FANTASY, HORROR, MYSTERY, ROMANCE, THRILLER, WESTERN): ")
+    age_restriction = input("Enter the age restriction(GA, PG, PG13, R, NC17): ")
+    rental_price = input("Enter the rental price: ")
+    available = input("Enter the availability(True/False): ")
+    rent_counter = input("Enter the rent counter: ")
+    movie = Movie(id, title, year, genre, age_restriction, rental_price, available, rent_counter)
+    return id, movie
+
+
 class Console:
     movie_repository = InFileRepository(MOVIES_CSV_FILE)
     movie_service = MovieService(movie_repository)
@@ -64,17 +77,8 @@ class Console:
 
     def handle_add_movie(self):
         print("---Add new Movie---")
-        id = input("Enter the ID: ")
-        title = input("Enter the title: ")
-        year = input("Enter the year: ")
-        genre = input("Enter the genre(ACTION, COMEDY, DRAMA, FANTASY, HORROR, MYSTERY, ROMANCE, THRILLER, WESTERN): ")
-        age_restriction = input("Enter the age restriction(GA, PG, PG13, R, NC17): ")
-        rental_price = input("Enter the rental price: ")
-        available = input("Enter the availability(True/False): ")
-        rent_counter = input("Enter the rent counter: ")
-
-        new_movie = Movie(id, title, year, genre, age_restriction, rental_price, available, rent_counter)
-        self.movie_service.save_movie(id, new_movie)
+        new_movie = read_movie_info()
+        self.movie_service.save_movie(new_movie[0], new_movie[1])
 
     def handle_view_movie(self):
         print("---View Movie---")
@@ -83,17 +87,8 @@ class Console:
 
     def handle_update_movie(self):
         print("---Update Movie---")
-        id = input("Enter the movie ID: ")
-        title = input("Enter the title: ")
-        year = input("Enter the year: ")
-        genre = input("Enter the genre(ACTION, COMEDY, DRAMA, FANTASY, HORROR, MYSTERY, ROMANCE, THRILLER, WESTERN): ")
-        age_restriction = input("Enter the age restriction(GA, PG, PG13, R, NC17): ")
-        rental_price = input("Enter the rental price: ")
-        available = input("Enter the availability(True/False): ")
-        rent_counter = input("Enter the rent counter: ")
-
-        updated_movie = Movie(id, title, year, genre, age_restriction, rental_price, available, rent_counter)
-        self.movie_service.update_movie(updated_movie)
+        new_movie = read_movie_info()
+        self.movie_service.update_movie(new_movie[1])
 
     def handle_delete_movie(self):
         print("---Delete Movie---")
@@ -102,6 +97,3 @@ class Console:
 
     def run_client_menu(self):
         pass
-
-
-
