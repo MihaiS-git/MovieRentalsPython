@@ -31,7 +31,28 @@ class Movie(BaseEntity):
     def get_id(self):
         return self.id
 
+    def get_title(self):
+        return self.title
+
+    def get_year(self):
+        return self.year
+
+    def get_genre(self):
+        return self.genre
+
+    def get_age_restriction(self):
+        return self.age_restriction
+
+    def get_rental_price(self):
+        return self.rental_price
+
+    def is_available(self):
+        return self.available
+
+    def get_rent_counter(self):
+        return self.rent_counter
+
     def __str__(self):
-        return (f"Movie ID: {self.id}\nTitle: {self.title}\nYear: {self.year}\nGenre: {self.genre}\n"
+        return (f"\nMovie ID: {self.id}\nTitle: {self.title}\nYear: {self.year}\nGenre: {self.genre}\n"
                 f"Age Restriction: {self.age_restriction}\nRentalPrice: {self.rental_price}\n"
                 f"Available: {self.available}\nRent Counter: {self.rent_counter}")

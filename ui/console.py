@@ -1,11 +1,12 @@
+from config.config import MOVIES_CSV_FILE
 from domain.movie import Movie
-from repository.in_memory_repository import InMemoryRepository
+from repository.in_file_repository import InFileRepository
 from service.movie_service import MovieService
 
 
 class Console:
-    repository = InMemoryRepository()
-    movie_service = MovieService(repository)
+    movie_repository = InFileRepository(MOVIES_CSV_FILE)
+    movie_service = MovieService(movie_repository)
 
     def __init__(self, movie_service):
         self.movie_service = movie_service

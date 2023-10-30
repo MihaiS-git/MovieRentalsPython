@@ -1,10 +1,11 @@
-from repository.in_memory_repository import InMemoryRepository
+from config.config import MOVIES_CSV_FILE
+from repository.in_file_repository import InFileRepository
 from service.movie_service import MovieService
 from ui.console import Console
 
 
 def main():
-    movie_repository = InMemoryRepository()
+    movie_repository = InFileRepository(MOVIES_CSV_FILE)
     movie_service = MovieService(movie_repository)
 
     console = Console(movie_service)

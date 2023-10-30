@@ -2,7 +2,7 @@ class InMemoryRepository:
     def __init__(self):
         self.data = {}
 
-    def create(self, key, value):
+    def save(self, key, value):
         if key in self.data:
             raise KeyError("Key already exists")
         self.data[key] = value
