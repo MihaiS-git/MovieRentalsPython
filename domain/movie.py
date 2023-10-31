@@ -1,4 +1,4 @@
-from domain.BaseEntity import BaseEntity
+from domain.base_entity import BaseEntity
 
 
 class Movie(BaseEntity):
